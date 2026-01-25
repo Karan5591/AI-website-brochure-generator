@@ -1,51 +1,89 @@
-### AI Website Brochure Generator
+## AI Website Brochure Generator
 
-- An AI-powered application that automatically generates a company brochure by analyzing a company’s website.
-- The tool scrapes relevant web pages, filters useful links using LLM reasoning, and synthesizes a concise, well-structured Markdown brochure.
-- A Gradio web interface is provided for easy interaction.
+### Overview
 
-#### Features
+AI Website Brochure Generator is an AI-powered Python application that automatically creates a professional company brochure by analyzing content from a company’s website.
 
-- Scrapes company websites to extract content
-- Uses LLMs to identify relevant pages (About, Products, Careers, etc.)
-- Generates a clean Markdown brochure
-- Streams LLM responses in real time
-- Interactive Gradio UI (enter company name & URL)
-- Environment-safe API key handling using .env
+#### The application:
 
-#### Tech Stack
+- Scrapes relevant pages from a company website
+- Uses an LLM to identify important sections (About, Careers, etc.)
+- Generates a concise, marketing-ready brochure in Markdown
+- Supports streaming output via a Gradio web interface
 
-- Python
-- OpenAI GPT models
-- Web scraping (requests, BeautifulSoup)
-- Prompt engineering
-- Streaming responses
-- Gradio (UI)
-- Jupyter Notebook (experimentation)
+### Why This Project Was Refactored
 
-#### Project Structure
-AI-Website-Brochure-Generator/
-│
-├── scraper.py                 # Core scraping & brochure logic
-├── Company_Broucher.ipynb     # Development & experimentation
-├── README.md                  # Project documentation
-├── .gitignore
-├── .env                       # API keys (not committed)
-└── .venv/                     # Virtual environment (not committed)
+- This project was initially developed as a Jupyter Notebook for rapid experimentation and prompt iteration.
+- To make it production-ready and suitable for job applications, it was refactored into a modular Python project with:
+- Clear separation of concerns
+- Reusable modules
+- A clean execution entry point
+- UI isolated from business logic
+- This refactor demonstrates real-world software engineering practices, not just experimentation.
 
-#### Gradio Interface
-- The Gradio UI allows users to:
-- Enter a Company Name
-- Enter a Company Website URL
-- Generate a brochure directly in the browser
+### Architecture & Design
 
-#### Example input:
-- Company Name: huggingFace
-- Company URL: https://huggingface.com
+The project follows a layered architecture to avoid tight coupling and circular dependencies.
 
-#### Current Status
+UI (Gradio)
+   ↓
+Brochure Generator (Business Logic)
+   ↓
+LLM Service (OpenAI API)
+   ↓
+Config / Prompts
 
-- Website scraping
-- LLM-based link selection
-- Brochure generation
-- Gradio UI integration
+*Design Principles Used*
+
+- Single Responsibility Principle
+- One-directional dependencies
+- Separation of UI, logic, and infrastructure
+- Streaming-safe LLM integration
+
+
+### Tech Stack
+
+- Python 3.10+
+- OpenAI API
+- Gradio (Web UI)
+- BeautifulSoup / Requests (Web scraping)
+- dotenv (Environment management)
+
+
+### Features
+
+- Automatic website link discovery
+- Relevant page selection using LLM reasoning
+- AI-generated company brochure in Markdown
+- Streaming responses for better UX
+- Clean, modular, production-ready architecture
+
+### Sample Use Case
+
+**Input:**
+
+Company Name: Hugging Face
+Website: https://huggingface.co
+
+
+**Output:**
+
+- Company overview
+- Products & customers
+- Culture and careers
+- Investor-friendly summary
+
+### Key Learnings
+
+- Refactoring notebooks into production-ready Python projects
+- Avoiding circular imports through layered architecture
+- Handling streaming responses safely
+- Separating prompt engineering from business logic
+
+### Future Improvements
+
+- Multi-language brochure generation
+- FastAPI backend support
+- Dockerization
+- Unit tests for LLM and scraping layers
+
